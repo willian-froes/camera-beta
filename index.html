@@ -52,24 +52,24 @@
         <script>
             'use strict';
 
-            // alert('edit 3');
+            alert('edit 4');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
 
-            // const constraints = {
-            //     audio: false,
-            //     video: { 
-            //         facingMode: { 
-            //             exact: 'environment' 
-            //         }
-            //     }
-            // }
-
             const constraints = {
                 audio: false,
-                video: true
+                video: { 
+                    facingMode: { 
+                        exact: 'environment' 
+                    }
+                }
             }
+
+            // const constraints = {
+            //     audio: false,
+            //     video: true
+            // }
 
             async function init() {
                 try {
