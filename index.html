@@ -52,7 +52,7 @@
         <script>
             'use strict';
 
-            alert('edit 12');
+            alert('edit 13');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
@@ -96,8 +96,8 @@
             const captureFrame = document.getElementById('captureButton');
 
             captureFrame.addEventListener('click', () => {
-                context.width = 720;
-                context.height = (context.width * window.screen.availHeight) / window.screen.availWidth
+                context.width = 720 + 300;
+                context.height = ((context.width * window.screen.availHeight) / window.screen.availWidth) + 300
 
                 context.style.display = 'block';
                 context.getContext('2d').drawImage(frame, 450, 0, (frame.videoWidth-500), (frame.videoHeight+400), 0, 0,  context.width, context.height);
