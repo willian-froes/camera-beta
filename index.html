@@ -53,7 +53,7 @@
         <script>
             'use strict';
 
-            alert('edit 6');
+            alert('edit 7');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
@@ -126,7 +126,7 @@
                 // let savedHeight = (height*savedWidth) / width;
 
                 context.style.display = 'block';
-                context.getContext('2d').drawImage(frame, 0, 0);
+                context.getContext('2d').drawImage(frame, 0, 0, context.width, context.height);
 
                 captureFrame.href = context.toDataURL('image/png');
                 captureFrame.download= "foot.png";
