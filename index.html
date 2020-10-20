@@ -57,19 +57,19 @@
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
 
-            const constraints = {
-                audio: false,
-                video: { 
-                    facingMode: { 
-                        exact: 'environment' 
-                    }
-                }
-            }
-
             // const constraints = {
             //     audio: false,
-            //     video: true
+            //     video: { 
+            //         facingMode: { 
+            //             exact: 'environment' 
+            //         }
+            //     }
             // }
+
+            const constraints = {
+                audio: false,
+                video: true
+            }
 
             async function init() {
                 try {
@@ -93,6 +93,11 @@
             captureFrame.addEventListener('click', () => {
                 console.log('Captura de frame solicitada');
 
+                alert('CLIENT = altura: ' + frame.clientHeight + ', largura: ' + frame.clientWidth);
+                alert('OFFSET = altura: ' + frame.offsetHeight + ', largura: ' + frame.offsetWidth);
+                alert('SCROLL = altura: ' + frame.scrollHeight + ', largura: ' + frame.scrollWidth);
+
+                frame.width
                 let width = frame.clientWidth;
                 let height = frame.clientHeight;
 
