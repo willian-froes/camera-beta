@@ -11,8 +11,7 @@
 
             .custom-video-container {
                 position: fixed;
-                top: 0;
-                left: 0;
+                z-index: 0;
             }
 
             .custom-video-size {
@@ -20,6 +19,16 @@
                 height: 100%;
                 object-fit: cover;
                 z-index: 0;
+            }
+
+            .custom-button-index {
+                position: fixed;
+                z-index: 99;
+            }
+
+            #context {
+                position: fixed;
+                right: 0;
             }
 
             @media screen and (orientation: portrait) {
@@ -32,16 +41,21 @@
         <title>Camera</title>
     </head>
     <body>
-        <div class="custom-video-container">
+        <div id="video-container" class="custom-video-container">
             <video id="video" class="custom-video-size" playsinline autoplay></video>
         </div>
+
+        <canvas id="context"></canvas>
+
+        <a class="custom-button-index" id="captureButton" href="#"> Salvar imagem </button>
     
         <script>
             'use strict';
 
-            alert('edit 3');
+            // alert('edit 3');
 
-            const video = document.getElementById('video');
+            const frame = document.getElementById('video');
+            const context = document.getElementById('context');
 
             const constraints = {
                 audio: false,
@@ -51,6 +65,11 @@
                     }
                 }
             }
+
+            // const constraints = {
+            //     audio: false,
+            //     video: true
+            // }
 
             async function init() {
                 try {
@@ -64,10 +83,28 @@
 
             function handleSuccess(stream) {
                 window.stream = stream;
-                video.srcObject = stream;
+                frame.srcObject = stream;
             }
 
             init();
+
+            const captureFrame = document.getElementById('captureButton');
+
+            captureFrame.addEventListener('click', () => {
+                console.log('Captura de frame solicitada');
+
+                let width = frame.clientWidth;
+                let height = frame.clientHeight;
+
+                context.width = width;
+                context.height = height;
+
+                context.getContext('2d').drawImage(frame, 0, 0, width, height);
+
+                var dataURL = context.toDataURL('image/png');
+                captureFrame.href = dataURL;
+                captureFrame.download= window.location.pathname+"my-image.png";
+            });
         </script>
     </body>
 </html>
