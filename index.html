@@ -21,12 +21,16 @@
     
         <script>
             'use strict';
+            alert('edit 1');
 
             const video = document.getElementById('video');
 
             const constraints = {
                 audio: false,
-                video: true
+                video: true,
+                facingMode: { 
+                    exact: 'environment' 
+                }
             }
 
             async function init() {
