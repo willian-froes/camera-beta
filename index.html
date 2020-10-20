@@ -100,7 +100,7 @@
                 context.height = ((context.width * window.screen.availHeight) / window.screen.availWidth) + 900
 
                 context.style.display = 'block';
-                context.getContext('2d').drawImage(frame, 450, 0, (frame.videoWidth-500), (frame.videoHeight+400), 0, 0,  context.width, context.height);
+                context.getContext('2d').drawImage(frame, 450, 0, (frame.videoWidth-500), (frame.videoHeight+200), 0, 0,  context.width, context.height);
 
                 captureFrame.href = context.toDataURL('image/png');
                 captureFrame.download= "foot.png";
