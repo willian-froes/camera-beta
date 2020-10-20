@@ -53,7 +53,7 @@
         <script>
             'use strict';
 
-            alert('edit 7');
+            alert('edit 6');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
@@ -114,13 +114,11 @@
 
             captureFrame.addEventListener('click', () => {
                 console.log('Captura de frame solicitada');
-                console.log(window.innerWidth);
 
-                let width = frame.clientWidth;
-                let height = frame.clientHeight;
+                context.width = window.screen.availWidth;
+                context.height = window.screen.availHeight;
 
-                context.width = window.innerWidth;
-                context.height = window.innerHeight;
+                console.log(context.width, context.height);
 
                 // let savedWidth = 720;
                 // let savedHeight = (height*savedWidth) / width;
