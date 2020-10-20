@@ -52,7 +52,7 @@
         <script>
             'use strict';
 
-            alert('edit 89');
+            alert('edit 10');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
@@ -96,18 +96,11 @@
             const captureFrame = document.getElementById('captureButton');
 
             captureFrame.addEventListener('click', () => {
-                console.log('Captura de frame solicitada');
-
-                context.width = window.screen.availWidth;
-                context.height = window.screen.availHeight;
-
-                console.log(context.width, context.height);
-
-                // let savedWidth = 720;
-                // let savedHeight = (height*savedWidth) / width;
+                context.width = 720;
+                context.height = (context.width * window.screen.availHeight) / window.screen.availWidth
 
                 context.style.display = 'block';
-                context.getContext('2d').drawImage(frame, 0, 0, context.width, context.height);
+                context.getContext('2d').drawImage(frame, 0, 0, frame.videoWidth, frame.videoHeight, 0, 0,  context.width, context.height);
 
                 captureFrame.href = context.toDataURL('image/png');
                 captureFrame.download= "foot.png";
