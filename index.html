@@ -29,6 +29,7 @@
             #context {
                 position: fixed;
                 right: 0;
+                /* display: none; */
             }
 
             @media screen and (orientation: portrait) {
@@ -52,7 +53,7 @@
         <script>
             'use strict';
 
-            alert('edit 4');
+            alert('edit 5');
 
             const frame = document.getElementById('video');
             const context = document.getElementById('context');
@@ -62,13 +63,34 @@
                 video: { 
                     facingMode: { 
                         exact: 'environment' 
+                    },
+                    width: { 
+                        min: 1024, 
+                        ideal: 1280,
+                        max: 1920 
+                    },
+                    height: { 
+                        min: 576, 
+                        ideal: 720, 
+                        max: 1080 
                     }
                 }
             }
 
             // const constraints = {
             //     audio: false,
-            //     video: true
+            //     video: {
+            //         width: { 
+            //             min: 1024, 
+            //             ideal: 1280,
+            //             max: 1920 
+            //         },
+            //         height: { 
+            //             min: 576, 
+            //             ideal: 720, 
+            //             max: 1080 
+            //         }
+            //     }
             // }
 
             async function init() {
@@ -92,23 +114,23 @@
 
             captureFrame.addEventListener('click', () => {
                 console.log('Captura de frame solicitada');
+                console.log(window.innerWidth);
 
-                alert('CLIENT = altura: ' + frame.clientHeight + ', largura: ' + frame.clientWidth);
-                alert('OFFSET = altura: ' + frame.offsetHeight + ', largura: ' + frame.offsetWidth);
-                alert('SCROLL = altura: ' + frame.scrollHeight + ', largura: ' + frame.scrollWidth);
-
-                frame.width
                 let width = frame.clientWidth;
                 let height = frame.clientHeight;
 
-                context.width = width;
-                context.height = height;
+                context.width = window.innerWidth;
+                context.height = window.innerHeight;
 
-                context.getContext('2d').drawImage(frame, 0, 0, width, height);
+                // let savedWidth = 720;
+                // let savedHeight = (height*savedWidth) / width;
 
-                var dataURL = context.toDataURL('image/png');
-                captureFrame.href = dataURL;
-                captureFrame.download= window.location.pathname+"my-image.png";
+                context.style.display = 'block';
+                context.getContext('2d').drawImage(frame, 0, 0, context.width, context.height);
+
+                captureFrame.href = context.toDataURL('image/png');
+                captureFrame.download= "foot.png";
+                context.style.display = 'none';
             });
         </script>
     </body>
